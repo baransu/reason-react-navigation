@@ -96,10 +96,18 @@ module NavigationContainer = {
   type state = Js.Json.t;
   type navigationState = state => unit;
 
+  module Ref = {
+    type t;
+
+    type currentRoute = {name: string};
+
+    [@bs.send] external getCurrentRoute: t => currentRoute = "getCurrentRoute";
+  };
+
   [@bs.module "@react-navigation/native"] [@react.component]
   external make:
     (
-      ~ref: ReactNative.NativeElement.ref=?,
+      ~ref: ReactNative.Ref.t(Ref.t)=?,
       ~initialState: state=?,
       ~onStateChange: navigationState=?,
       ~children: React.element
