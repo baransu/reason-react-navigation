@@ -110,6 +110,7 @@ module NavigationContainer = {
       ~ref: ReactNative.Ref.t(Ref.t)=?,
       ~initialState: state=?,
       ~onStateChange: navigationState=?,
+      ~onReady: unit => unit=?,
       ~children: React.element
     ) =>
     React.element =
